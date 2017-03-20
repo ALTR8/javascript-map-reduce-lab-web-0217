@@ -8989,7 +8989,7 @@ const issues = [
     "number": 1,
     "state": "open",
     "url": "https://api.github.com/repos/learn-co-curriculum/string-concatenation-readme/issues/1"
-  },
+  }, 
   {
     "body": "",
     "created_at": "2015-04-04 13:25:06 UTC",
@@ -9000,3 +9000,26 @@ const issues = [
     "url": "https://api.github.com/repos/learn-co-curriculum/js-donut-lab/issues/2"
   }
 ];
+
+const issuesWithUpdatedApiUrl = issues.map(issue => Object.assign({}, issue, {
+    url: issue.url.replace('api.github.com', 'api-v2.github.com')
+}))
+
+const commentCountAcrossIssues = issues.map(issue => issue.comments_count).reduce((total, count) => total + count)
+
+const openIssues = issues.reduce((openIssues, issue) => {
+  if (issue.state === "open") 
+    openIssues.push(Object.assign({}, issue))
+  return openIssues
+}, [])
+
+const nonAutomaticIssues = issues.filter(i=>i.body !== "This pull request has been automatically created by learn.co.")
+
+const tbody = document.getElementById('results');
+
+nonAutomaticIssues.map((issue) => {
+  let newRow = tbody.insertRow()
+  newRow.innerHTML = "Hi"
+})
+
+
